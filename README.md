@@ -121,6 +121,14 @@ CLAUDE.md           agent persona, rules, MCP tool list
 
 ---
 
+## Inspiration
+
+The `wiki/` layer is a direct implementation of Andrej Karpathy's [LLM Wiki pattern](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) (April 2025). The core idea: instead of re-querying raw sources at every turn (traditional RAG), an LLM incrementally builds and maintains a persistent, interlinked Markdown wiki — synthesising, cross-referencing, and annotating as it goes. Queries are answered from the synthesised wiki, not raw chunks.
+
+KDB wires that pattern into a PM's daily workflow: `wiki/surface.yaml` defines what to track, the slash commands (`/wiki-brief`, `/wiki-ingest`, `/wiki-lint`) run the ingest/query/lint cycle, and Obsidian provides the graph view over the compounding knowledge base.
+
+---
+
 ## Design choices
 
 **Markdown as state.** Every config, knowledge file, and wiki entry is plain Markdown. The agent and a human can both read, write, diff, and review it through git. There is no database to migrate, no JSON schema to version.
