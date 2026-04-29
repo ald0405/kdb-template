@@ -1,6 +1,11 @@
 # surface.yaml — your initiatives, metrics, and source queries
 # KDB reads this at the start of every wiki-aware command.
 # Fill in your active initiatives and the metrics that matter.
+#
+# Refresh cadence:
+#   business_health metrics → re-queried live every Monday by /wiki-brief (never cached here)
+#   initiatives → update status/phase manually when something changes
+#   Add new metrics under the initiative they belong to (phase_active_from controls when they activate)
 
 pm: YOUR_NAME
 

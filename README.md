@@ -92,12 +92,15 @@ MCP servers wired in:
 
 ## Quickstart
 
-1. **Clone** this repo and drop your local Looker toolbox binary into `looker-toolbox/` (the directory's contents are gitignored — only the placeholder is tracked).
+**Prerequisites:** Node.js 18+, Claude Code CLI, and a Claude Pro or Team subscription.
+
+1. **Clone** this repo and drop your local Looker toolbox binary into `looker-toolbox/` (the directory's contents are gitignored — only the placeholder is tracked). Skip if you don't use Looker.
 2. **Fill in `.mcp.json`** with your Looker URL, client ID, and client secret. This file is gitignored so credentials never leave your machine.
-3. **Authenticate remote MCPs** via `claude mcp add --transport http <name> <url>` for Notion, Figma, Slack, Amplitude, Atlassian, and the LangChain docs.
+3. **Authenticate remote MCPs** via `claude mcp add --transport http <name> <url>` for Notion, Figma, Slack, Amplitude, Atlassian, and the LangChain docs. Wire up only the tools you actually use.
 4. **Edit [`kdb.config.md`](./kdb.config.md)** — replace every `YOUR_…` placeholder with your real URLs, channel names, and Jira project key.
 5. **Fill in `knowledge/`** — PRD template, product glossary, OKRs, Slack channel rules, dashboard index, team roster, per-person stakeholder profiles.
-6. **Run** `claude` from the repo root. Try `/morning` or `/weekly-pulse` to see it work end-to-end.
+6. **Fill in `wiki/surface.yaml`** — add your active initiatives and the metrics you track weekly. This is what drives `/wiki-brief`.
+7. **Run** `claude` from the repo root. Try `/morning` or `/weekly-pulse` to see it work end-to-end.
 
 ---
 
@@ -134,7 +137,9 @@ CLAUDE.md           agent persona, rules, MCP tool list
 
 ## Status
 
-This is a template — fork it and fill in the placeholders. Knowledge files, `wiki/surface.yaml`, the competitor list, and `kdb.config.md` ship as scaffolding. The slash commands, agent rules, wiki conventions, and MCP allow-list are production-shaped and ready to use.
+Template — fork and fill in the placeholders. `knowledge/`, `wiki/surface.yaml`, the competitor list, and `kdb.config.md` ship as scaffolding with worked examples. The slash commands, agent rules, wiki conventions, and MCP allow-list are production-shaped and ready to use.
+
+The worked examples in `knowledge/` (PRD template, glossary, OKRs structure) are intentionally generic so you can see the expected format before replacing with your team's content.
 
 ---
 
