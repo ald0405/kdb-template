@@ -2,13 +2,19 @@
 
 > Named after Kevin De Bruyne, the assist king. Sets up your PMs to score.
 
-A config-driven AI assistant for product managers, built on [Claude Code](https://docs.claude.com/en/docs/claude-code) and the [Model Context Protocol](https://modelcontextprotocol.io). KDB drafts comms, queries Looker and Amplitude, writes PRDs, runs competitor scans, and maintains a synthesis wiki — all from one Markdown config file. Fork it, point it at your stack, and use it as a daily PM copilot.
+Three layers, three jobs. KDB is the layer everyone skips — the one that makes the other two work for *you*.
+
+| | Layer | What it is | Who builds it |
+|---|---|---|---|
+| 01 | **The model** — Sonnet · Opus | The engine. Raw capability. Frontier-grade reasoning, but no idea who you are or what you're trying to do. | Anthropic |
+| 02 | **The harness** — Claude Code · MCP | The controls. Tools, file access, terminals, integrations. Lets the model do work in the real world — but still no opinion on *your* world. | Tooling |
+| 03 | **The saddle** — KDB | The fit. Your context, your decisions, your stakeholders, your URLs. The layer that turns generic horsepower into *your* ride. | You |
 
 ---
 
 ## What this is
 
-KDB is a template repository, not a product. It's a worked example of how to wire a general-purpose coding agent into a real product manager's workflow: every URL, channel, dashboard, person, and slash command lives in plain Markdown, so a non-technical PM can change behaviour by editing one file. The agent reads the config, loads only the knowledge it needs, calls the right MCP server, drafts an output, and waits for explicit approval before writing anywhere.
+KDB is a template repository, not a product. Fork it, replace the placeholders with your stack, and you have a config-driven PM copilot: every URL, channel, dashboard, person, and slash command lives in plain Markdown. The agent reads the config, loads only the knowledge it needs, calls the right MCP server, drafts an output, and waits for explicit approval before writing anywhere.
 
 ---
 
