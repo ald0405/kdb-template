@@ -1,0 +1,42 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__looker-toolbox__get_models",
+      "mcp__looker-toolbox__get_explores",
+      "mcp__looker-toolbox__get_measures",
+      "mcp__looker-toolbox__get_dimensions",
+      "mcp__looker-toolbox__get_dashboards",
+      "mcp__looker-toolbox__query",
+      "mcp__amplitude__get_from_url",
+      "mcp__amplitude__get_dashboard",
+      "mcp__amplitude__query_chart",
+      "mcp__amplitude__query_charts",
+      "mcp__atlassian__searchJiraIssuesUsingJql",
+      "mcp__atlassian__getJiraIssue",
+      "mcp__atlassian__createJiraIssue",
+      "mcp__atlassian__getJiraProjectIssueTypesMetadata",
+      "mcp__atlassian__getJiraIssueTypeMetaWithFields",
+      "mcp__atlassian__addCommentToJiraIssue",
+      "mcp__atlassian__lookupJiraAccountId",
+      "mcp__notion__notion-get-users",
+      "mcp__notion__notion-search",
+      "mcp__notion__notion-fetch",
+      "mcp__notion__notion-query-data-sources",
+      "mcp__notion__notion-get-comments",
+      "mcp__notion__notion-query-meeting-notes",
+      "mcp__notion__notion-create-pages",
+      "mcp__notion__notion-update-page",
+      "Bash(claude mcp:*)",
+      "Bash(npm install:*)",
+      "Bash(node_modules/.bin/playwright install:*)",
+      "Bash(timeout 120 node capture.mjs)",
+      "Bash(gh repo *)",
+      "Bash(gh pr *)",
+      "Bash(gh api *)",
+      "Read(//tmp/**)"
+    ]
+  },
+  "enabledMcpjsonServers": [
+    "looker-toolbox"
+  ]
+}

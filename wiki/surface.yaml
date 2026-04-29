@@ -1,0 +1,30 @@
+# surface.yaml — your initiatives, metrics, and source queries
+# KDB reads this at the start of every wiki-aware command.
+# Fill in your active initiatives and the metrics that matter.
+
+pm: YOUR_NAME
+
+business_health:
+  - metric: YOUR_METRIC_NAME
+    slug: your-metric-slug
+    source: looker-YOUR_DASHBOARD_ID
+    dashboard_url: YOUR_LOOKER_DASHBOARD_URL
+    query_notes: "YOUR_FILTER_OR_QUERY_NOTE"
+  - metric: YOUR_METRIC_NAME
+    slug: your-metric-slug
+    source: amplitude-YOUR_DASHBOARD_ID
+    dashboard_url: YOUR_AMPLITUDE_DASHBOARD_URL
+    query_notes: "YOUR_FILTER_OR_QUERY_NOTE"
+
+initiatives:
+  - slug: your-initiative-slug
+    title: "Your Initiative Title"
+    notion_url: YOUR_NOTION_INITIATIVE_URL
+    status: active       # active | paused | complete
+    phase: discovery     # discovery | build | launch | optimise
+    phase_active_from: discovery
+    owner: YOUR_NAME
+    metrics:
+      - slug: your-metric-slug
+        goal: "Increase X by Y%"
+        phase_active_from: build

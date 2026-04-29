@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Your Product",
+    "slug": "your-product",
+    "url": "https://www.your-product.com",
+    "pricingUrl": "https://www.your-product.com/pricing"
+  },
+  {
+    "name": "Example Competitor",
+    "slug": "example-competitor",
+    "url": "https://www.example-competitor.com",
+    "pricingUrl": "https://www.example-competitor.com/weight-loss"
+  }
+]

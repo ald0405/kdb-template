@@ -1,0 +1,20 @@
+.mcp.json
+.env
+*.secret
+.claude/settings.local.json
+# looker-toolbox: ignore everything inside (binary + any local creds)
+# but keep the placeholder so the setup step in README still makes sense
+looker-toolbox/*
+!looker-toolbox/.gitkeep
+reports/competitor/
+# macOS
+.DS_Store
+# Obsidian — ignore personal state, track structural config
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/appearance.json
+.obsidian/themes/
+.obsidian/plugins/
+.obsidian/snippets/
+scripts/competitor-pricing/node_modules/
+scripts/competitor-pricing/tmp/
