@@ -4,17 +4,15 @@
 
 Three layers, three jobs. KDB is the layer everyone skips — the one that makes the other two work for *you*.
 
-| | Layer | What it is | Who builds it |
-|---|---|---|---|
-| 01 | **The model** — Sonnet · Opus | The engine. Raw capability. Frontier-grade reasoning, but no idea who you are or what you're trying to do. | Anthropic |
-| 02 | **The harness** — Claude Code · MCP | The controls. Tools, file access, terminals, integrations. Lets the model do work in the real world — but still no opinion on *your* world. | Tooling |
-| 03 | **The saddle** — KDB | The fit. Your context, your decisions, your stakeholders, your URLs. The layer that turns generic horsepower into *your* ride. | You |
+![Model. Harness. Saddle. — three layers, three jobs](assets/slide-model-harness-saddle.png)
 
 ---
 
 ## What this is
 
 KDB is a template repository, not a product. Fork it, replace the placeholders with your stack, and you have a config-driven PM copilot: every URL, channel, dashboard, person, and slash command lives in plain Markdown. The agent reads the config, loads only the knowledge it needs, calls the right MCP server, drafts an output, and waits for explicit approval before writing anywhere.
+
+![KDB — one fill of the saddle. Four internal layers: wiki, knowledge base, config, MCP tools.](assets/slide-kdb-system.png)
 
 ---
 
@@ -132,6 +130,8 @@ CLAUDE.md           agent persona, rules, MCP tool list
 The `wiki/` layer is a direct implementation of Andrej Karpathy's [LLM Wiki pattern](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) (April 2026). The core idea: instead of re-querying raw sources at every turn (traditional RAG), an LLM incrementally builds and maintains a persistent, interlinked Markdown wiki — synthesising, cross-referencing, and annotating as it goes. Queries are answered from the synthesised wiki, not raw chunks.
 
 KDB wires that pattern into a PM's daily workflow: `wiki/surface.yaml` defines what to track, the slash commands (`/wiki-brief`, `/wiki-ingest`, `/wiki-lint`) run the ingest/query/lint cycle, and Obsidian provides the graph view over the compounding knowledge base.
+
+![The wiki — where it compounds. Context accumulates into a graph.](assets/slide-wiki.png)
 
 ---
 
