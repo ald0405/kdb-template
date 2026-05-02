@@ -1,5 +1,11 @@
 # KDB — the AI assist
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-green?style=flat-square)](./LICENSE)
+[![Built with Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code-5C4EE5?style=flat-square&logo=anthropic&logoColor=white)](https://claude.ai/code)
+[![MCP](https://img.shields.io/badge/MCP-7%20servers-blue?style=flat-square)](https://modelcontextprotocol.io)
+[![Inspired by LLM Wiki](https://img.shields.io/badge/Inspired%20by-Karpathy%20LLM%20Wiki-f5c518?style=flat-square&logoColor=black)](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)
+[![GitHub Stars](https://img.shields.io/github/stars/ald0405/kdb-template?style=flat-square&color=yellow)](https://github.com/ald0405/kdb-template/stargazers)
+
 > Named after Kevin De Bruyne, the assist king. Sets up your PMs to score.
 
 Three layers, three jobs. KDB is the layer everyone skips — the one that makes the other two work for *you*.
