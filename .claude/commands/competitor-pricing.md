@@ -1,21 +1,34 @@
-Capture and compare competitor pricing pages.
+Capture and compare competitor pricing pages across your tracked categories.
 
 ## Arguments
 $ARGUMENTS
 
 If arguments are provided, treat them as space-separated homepage URLs to capture ad-hoc.
-Pass them to the script: `node ./scripts/competitor-pricing/capture.mjs <url1> <url2> ...`
 Otherwise run with no arguments to use the configured competitor list.
 
-## Competitors Analyzed
+---
 
-Competitors are defined in `./scripts/competitor-pricing/competitors.json`.
+## Setup check
 
-Edit that file to configure your own competitor list. Each entry needs: `name`, `slug`, `url`, and optional category-specific URLs.
+First, read `kdb.config.md` and `scripts/competitor-pricing/competitors.json`.
 
-**Categories tracked**: configure in `competitors.json` — e.g. weight-loss, erectile-dysfunction, hair-loss, testosterone
+If `competitor_analysis.industry` is still `YOUR_INDUSTRY`, or the competitors list only contains example entries — **run guided setup before proceeding**:
 
-To add or update competitors, edit the JSON config file directly. Each entry has: name, slug, url, and category URLs.
+### Guided setup (first-time only)
+
+Ask the user these questions one at a time. Confirm each answer before moving on.
+
+1. **Industry**: "What industry or market are you in? (e.g. 'online healthcare', 'B2B SaaS', 'consumer insurance', 'retail banking')"
+2. **Your product**: "What's your product/company name and homepage URL?"
+3. **Categories**: "What product categories or pricing lines do you want to track? List them. (e.g. 'annual plan, monthly plan, enterprise' or 'weight-loss, skincare, vitamins')"
+4. **Key attributes**: "What matters most when comparing prices in your category? (e.g. 'monthly price, what's included, contract length, free trial')"
+5. **Competitors**: "Who are your main competitors? Give me names and URLs — one per line."
+
+After collecting all answers:
+- Update `scripts/competitor-pricing/competitors.json` with the full competitor list
+- Update `scripts/competitor-pricing/competitors-category.json` with your product (marked `"isSelf": true`) and competitors
+- Update the `competitor_analysis` section of `kdb.config.md` with industry, categories, and key_attributes
+- Show the user a summary of what you wrote and ask for confirmation before continuing to the capture step
 
 ---
 
@@ -23,111 +36,96 @@ To add or update competitors, edit the JSON config file directly. Each entry has
 
 ### Step 1 — Ensure dependencies are installed
 
-Run the following to install npm dependencies and the Playwright browser (idempotent — safe to run every time):
 ```
 cd ./scripts/competitor-pricing && npm install && node_modules/.bin/playwright install chromium
 ```
 
 ### Step 2 — Run the capture script
 
-Run:
 ```
 cd ./scripts/competitor-pricing && node capture.mjs
 ```
 
-If arguments were provided, pass them to the script:
+If arguments were provided:
 ```
 cd ./scripts/competitor-pricing && node capture.mjs <url1> <url2> ...
 ```
 
 ### Step 3 — Read today's manifest
 
-Read the file: `./reports/competitor/runs/YYYY-MM-DD/manifest.json` (substitute today's actual date).
+Read: `./reports/competitor/runs/YYYY-MM-DD/manifest.json` (today's date).
 
 For each result where `error` is null:
-- Read the screenshot at the `screenshotPath` field (view it as an image — you are multimodal)
-- Read the text content at the `textPath` field
+- Read the screenshot at `screenshotPath` (view as image — you are multimodal)
+- Read the text at `textPath`
 
 For results where `error` is set, note the failure and move on.
 
 ### Step 4 — Find the previous run
 
-List the directories inside `./reports/competitor/runs/`. Sort them. The previous run is the most recent directory that is NOT today's date. If no previous run exists, skip the comparison step and note this is the baseline run.
+List directories inside `./reports/competitor/runs/`. The previous run is the most recent directory that is NOT today's date. If none exists, this is the baseline run — note it and skip comparison.
 
-If a previous run exists:
-- Read `./reports/competitor/runs/PREVIOUS-DATE/manifest.json`
-- For each competitor that succeeded in both runs, read their previous `content.txt`
+If a previous run exists, read its manifest and content files for each competitor.
 
 ### Step 5 — Extract pricing intelligence
 
-Categories tracked: **weight-loss**, **erectile-dysfunction**, **hair-loss**, **testosterone**.
+Read `kdb.config.md` to get:
+- `competitor_analysis.categories` — the categories you track
+- `competitor_analysis.key_attributes` — what to extract per competitor
 
-For each successfully captured competitor + category page, analyse the screenshot and text to extract:
-- Treatment/product names (e.g. Mounjaro, Wegovy, Sildenafil, Finasteride)
-- Prices (with £ amounts, billing period — monthly, per dose, per course)
-- What's included (consultation, medication, delivery, coaching)
-- Subscription vs. one-off vs. pay-per-treatment model
-- Any "from £X/month" entry points
-- Free trial, trial period, or money-back guarantees
+For each competitor + category page captured, extract:
+- Product/plan/treatment names and tiers
+- Prices (with currency, billing period — monthly, annual, per-unit, per-course)
+- What's included at each tier or price point
+- Subscription vs. one-off vs. pay-per-use model
+- Entry price / "from £X" positioning
+- Any promotions, free trials, or guarantees
+
+Adapt extraction to your category. The attributes from `kdb.config.md` define what matters.
 
 ### Step 6 — Compare with previous run
 
-For each competitor + category with both a current and previous capture:
-- Compare extracted pricing and treatment offerings
-- Identify: price changes, new treatments added, treatments removed, packaging changes, messaging shifts
-- Flag strategic moves (e.g. a competitor adding a new category, dropping prices, launching a free tier)
+For each competitor with both a current and previous capture:
+- Flag price changes, new offerings added, offerings removed
+- Flag packaging or positioning changes
+- Flag strategic moves (new category entered, free tier launched, etc.)
 
 ### Step 7 — Write the report
 
-Save a markdown report to: `./reports/competitor/YYYY-MM-DD.md`
+Save to: `./reports/competitor/YYYY-MM-DD.md`
 
-Report structure:
-
-```
+```markdown
 # Competitor Pricing Report — YYYY-MM-DD
 
 ## Summary
-[2-3 sentences: key moves, who changed what, market signals]
+[2–3 sentences: key moves, who changed what, market signals]
 
 ## Change Alerts
-[Only populate if changes vs. previous run exist]
+[Only if changes vs. previous run exist]
 - **Competitor — Category**: what changed
 
 ## By Category
 
 ### [Category Name]
-| Competitor | Treatments | Entry Price | Included | Model | vs. Last Run |
-|------------|------------|-------------|----------|-------|--------------|
-| [Competitor] | ... | £X/mo | ... | subscription | — |
+| Competitor | Offerings | Entry Price | Included | Model | vs. Last Run |
+|------------|-----------|-------------|----------|-------|--------------|
 
-[Repeat a table per tracked category — only include competitors that offer it]
+[One table per tracked category]
 
 ## Competitor Profiles
 
 ### [Competitor Name]
-**Categories offered**: list only what they offer
-
-#### [Category Name]
-**Page**: [URL]
-- Treatments: [list]
-- Pricing: [details]
-- Model: [subscription/one-off/etc]
-- vs. Previous: [No change / describe what changed]
-
-#### [next category]
-...
-
----
-[repeat for each competitor]
+**Categories offered**: list
+**Pricing**: [detail by category]
+**Model**: [subscription/one-off/etc]
+**vs. Previous**: [No change / describe changes]
 
 ## Not Offered (gaps)
 | Competitor | Missing Categories |
 |------------|--------------------|
-| [Competitor] | [categories not offered] |
-| ... | ... |
 
 ## Failed Captures
-[Any pages that errored, with reason]
+[Any pages that errored]
 ```
 
-Then output the full report to the user in the conversation.
+Output the full report in the conversation.

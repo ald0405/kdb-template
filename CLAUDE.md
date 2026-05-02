@@ -17,8 +17,8 @@ Invoke these at the start of a session to get focused, context-loaded behaviour:
 | `/comms` | Drafting Slack messages, product updates, launch comms |
 | `/product` | PRD work, Jira tickets, roadmap decisions, discovery |
 | `/morning` | Daily pulse check at the start of the day |
-| `/competitor-pricing` | Full multi-category competitor audit |
-| `/competitor-pricing-weight-loss` | Category-specific competitor deep-dive |
+| `/competitor-pricing` | Full multi-category competitor audit (guided setup on first run) |
+| `/competitor-pricing-deep-dive` | Category-specific deep-dive — by variant/tier, your product as baseline (guided setup on first run) |
 | `/weekly-pulse` | **Combined weekly routine** — stakeholder scan + wiki brief in one pass |
 | `/stakeholder-scan` | Pull latest Slack + Notion activity, update stakeholder profiles |
 | `/prep` | Pre-meeting prep brief for a specific person |

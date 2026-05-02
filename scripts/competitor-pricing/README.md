@@ -1,8 +1,12 @@
 # Competitor Pricing Scripts
 
-Playwright-based scripts that capture competitor pricing pages and produce structured markdown reports.
+Playwright-based scripts that capture competitor pricing pages and produce structured markdown reports. Works for any industry — configured via `kdb.config.md` and the JSON files below.
 
-## One-time setup
+## First-time setup
+
+You don't need to edit anything manually. Run `/competitor-pricing` or `/competitor-pricing-deep-dive` inside KDB and it will walk you through a guided setup: industry, categories, competitors, and key attributes to track.
+
+If you prefer to configure manually:
 
 ```bash
 cd scripts/competitor-pricing
@@ -10,29 +14,26 @@ npm install
 node_modules/.bin/playwright install chromium
 ```
 
-## Config files
+Then edit:
+- `competitors.json` — full competitor list (all categories)
+- `competitors-category.json` — focused list for the deep-dive command (include yourself with `"isSelf": true`)
 
-Edit these before your first run:
-
-- `competitors.json` — full competitor list (multi-category)
-- `competitors-weight-loss.json` — weight-loss category focus (include yourself for comparison)
-
-Each entry needs: `name`, `slug`, `url`, and optional `pricingUrl`.
+Each entry needs: `name`, `slug`, `url`, and optional category-specific `categoryUrl`.
 
 ## Running
 
 Use the slash commands inside KDB:
 - `/competitor-pricing` — full multi-category run
-- `/competitor-pricing-weight-loss` — weight loss deep-dive
+- `/competitor-pricing-deep-dive` — deep-dive on your primary category, your product as baseline
 
 ## Output
 
 Reports go to: `reports/competitor/runs/YYYY-MM-DD/` (gitignored — run locally).
 
-The slash commands also update `competitors/competitive-matrix.md` and push a summary to the Notion `competitor_research_db` URL in `kdb.config.md`.
+Slash commands also update `competitors/competitive-matrix.md` and push a summary to Notion (`competitor_research_db` in `kdb.config.md`).
 
 ## Tips
 
-- Run `/competitor-pricing-weight-loss` first — it's faster and gives you a category-specific baseline.
-- Add yourself to `competitors-weight-loss.json` under `"isSelf": true` so your own prices appear in the comparison table.
+- Run `/competitor-pricing-deep-dive` first — faster, gives a category-specific baseline.
+- Include yourself in `competitors-category.json` with `"isSelf": true` so your prices anchor the comparison tables.
 - Prices change frequently. Re-run at least monthly or before any pricing decision.

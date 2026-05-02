@@ -41,17 +41,33 @@ dashboards:
 
 wow_metrics: YOUR_METRIC_1, YOUR_METRIC_2, YOUR_METRIC_3
 
-## Competitor Analysis
-# Competitor pricing scripts are in scripts/competitor-pricing/
-# Before first use:
-#   cd scripts/competitor-pricing && npm install
-#   node_modules/.bin/playwright install chromium
+## Competitor analysis
+# Run /competitor-pricing (broad) or /competitor-pricing-deep-dive (category focus).
+# Both commands run a guided setup if these values are still placeholders.
 #
-# Config files:
-#   scripts/competitor-pricing/competitors.json — competitor list
-#   scripts/competitor-pricing/competitors-weight-loss.json — category focus
-#
-# Output: reports/competitor/runs/YYYY-MM-DD/ and reports/competitor/
+# Scripts: scripts/competitor-pricing/
+# Output:  reports/competitor/runs/YYYY-MM-DD/ and reports/competitor/
+
+industry: YOUR_INDUSTRY
+# e.g. "online healthcare", "B2B SaaS", "consumer insurance", "retail banking"
+
+categories:
+  - YOUR_PRIMARY_CATEGORY     # e.g. "subscription-plan", "weight-loss", "annual-policy"
+  - YOUR_SECONDARY_CATEGORY
+
+deep_dive_category: YOUR_PRIMARY_CATEGORY
+# Used by /competitor-pricing-deep-dive when no category argument is passed
+
+pricing_unit: YOUR_PRICING_UNIT
+# e.g. "per month", "per dose", "per policy", "per seat"
+
+product_variants:
+  - YOUR_VARIANT_1    # e.g. "Starter plan", "50mg dose", "Basic cover"
+  - YOUR_VARIANT_2
+
+key_attributes:
+  - YOUR_ATTRIBUTE_1    # e.g. "monthly price", "what's included", "minimum commitment"
+  - YOUR_ATTRIBUTE_2    # e.g. "support model", "free trial", "money-back guarantee"
 
 ## People
 # Stakeholder intelligence — used by /stakeholder-scan and /prep.

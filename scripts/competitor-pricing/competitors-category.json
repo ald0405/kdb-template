@@ -2,13 +2,14 @@
   {
     "name": "Your Product",
     "slug": "your-product",
+    "isSelf": true,
     "url": "https://www.your-product.com",
-    "pricingUrl": "https://www.your-product.com/pricing"
+    "categoryUrl": "https://www.your-product.com/YOUR_CATEGORY_PATH"
   },
   {
     "name": "Example Competitor",
     "slug": "example-competitor",
     "url": "https://www.example-competitor.com",
-    "pricingUrl": "https://www.example-competitor.com/weight-loss"
+    "categoryUrl": "https://www.example-competitor.com/YOUR_CATEGORY_PATH"
   }
 ]

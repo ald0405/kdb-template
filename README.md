@@ -73,8 +73,8 @@ flowchart LR
 | `/wiki-ingest {url}` | Ingest a Notion page or pasted notes into the wiki |
 | `/decision {title}` | Capture a decision into `wiki/decisions/` |
 | `/wiki-lint` | Monthly wiki health check — orphans, stale pages, missing wikilinks |
-| `/competitor-pricing` | Full multi-category competitor pricing audit (Playwright) |
-| `/competitor-pricing-weight-loss` | Category-specific competitor deep-dive |
+| `/competitor-pricing` | Full multi-category competitor pricing audit — guided setup on first run |
+| `/competitor-pricing-deep-dive` | Category-specific deep-dive by variant/tier, your product as baseline — guided setup on first run |
 
 ---
 
