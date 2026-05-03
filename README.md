@@ -7,7 +7,9 @@
 
 > Named after Kevin De Bruyne, the assist king. Sets up your PMs to score.
 
-Three layers, three jobs. KDB is the layer everyone skips: the one that makes the other two work for *you*.
+Most PMs use AI the same way: one-shot prompts, every session starting cold. The model knows nothing about your team, your decisions, or the context behind them. The synthesis burden stays with you.
+
+KDB is the missing layer. It builds a compounding knowledge base around your specific world: your stakeholders, your metrics, your decisions, your URLs. After a few weeks it stops being a tool and starts being context you've already done the work to build.
 
 ![Model. Harness. Saddle. Three layers, three jobs.](assets/slide-model-harness-saddle.png)
 
@@ -15,22 +17,22 @@ Three layers, three jobs. KDB is the layer everyone skips: the one that makes th
 
 ## What this is
 
-A config-driven PM copilot built on [Claude Code](https://docs.claude.com/en/docs/claude-code) and [MCP](https://modelcontextprotocol.io). Fork it, replace the placeholders with your stack, and every URL, channel, dashboard, person, and slash command lives in plain Markdown. The agent reads the config, loads only what it needs, and drafts before posting anywhere.
+A Claude Code template for product managers. Fork it, point it at your stack, and you have an AI assistant that knows your team, tracks your metrics, maintains a synthesis wiki, and gets smarter every week. Everything lives in plain Markdown. Drafts before posting anywhere.
 
 ![KDB: one fill of the saddle. Four internal layers: wiki, knowledge base, config, MCP tools.](assets/slide-kdb-system.png)
 
 ---
 
-## What it demonstrates
+## What you get
 
-- **Multi-MCP orchestration** across 7 integrations: Notion, Figma, Slack, Amplitude, Atlassian/Jira, Looker (local toolbox), and LangChain docs
-- **Composable slash commands**: 14 named workflows in `.claude/commands/`, each loading its own context bundle
-- **Config-as-knowledge**: `kdb.config.md` + `knowledge/` + `wiki/surface.yaml` make agent behaviour data-driven, not code-driven
-- **LLM-maintained wiki**: Obsidian-compatible, frontmatter schema, append-only context logs, monthly lint
-- **Approval-gated writes**: draft first, explicit yes before any post to Slack, Jira, or Notion
-- **Browser automation**: Playwright competitor pricing scrapers triggered by slash commands
-- **Permissioned tool access**: explicit MCP allow-list in `.claude/settings.json`
-- **Live docs**: LangChain MCP so AI/RAG questions never hit a stale training set
+- **A wiki that compounds**: LLM-maintained synthesis in `wiki/`. Decisions, metrics, stakeholder patterns accumulated so context is not rebuilt every prompt
+- **14 slash commands**: Pre-built PM workflows for briefs, stakeholder prep, reflection, competitor pricing. Each loads only the context it needs
+- **7 integrations via MCP**: Notion, Slack, Jira, Amplitude, Figma, LangChain docs, Looker. The AI can act, not just advise
+- **One config file**: All your URLs, channels, and dashboards in `kdb.config.md`. Change behaviour by editing Markdown, no code required
+- **Approval-gated writes**: Draft first, explicit yes before any post to Slack, Jira, or Notion
+- **Competitor pricing automation**: Playwright scrapers triggered by slash commands, with guided setup for your industry
+- **Permissioned tool access**: Explicit MCP allow-list in `.claude/settings.json` so nothing fires without approval
+- **Live documentation**: LangChain MCP answers AI/RAG questions against current docs, not a frozen training set
 
 ---
 
@@ -92,6 +94,21 @@ flowchart LR
 | Atlassian/Jira | Create, update, search issues |
 | LangChain docs | Live documentation for AI/RAG questions |
 | Looker | Query dashboards via local toolbox binary |
+
+---
+
+## Before and after
+
+Eight weeks in:
+
+| Workflow | Before | With KDB |
+|----------|--------|----------|
+| Stakeholder prep | 15 min Slack trawl | 2 min via `/prep`, sourced and diffed vs last week |
+| Weekly metrics brief | 30 min across 3 dashboards | 5 min, auto-diffed with caveats included |
+| Competitor pricing | Ad-hoc and stale | Weekly run, trend line, cross-competitor matrix current |
+| Decision rationale | In someone's head | Logged, searchable, survives team change |
+
+The bottleneck moves from finding information to interpreting it.
 
 ---
 
