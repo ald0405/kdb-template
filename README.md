@@ -85,15 +85,19 @@ flowchart LR
 
 ## Integrations
 
-| Tool | Role |
-|------|------|
-| Notion | Read/write PRDs, meeting notes, roadmaps |
-| Figma | Read design files and extract specs (read-only) |
-| Slack | Draft and post channel updates |
-| Amplitude | Query dashboards, funnels, experiments |
-| Atlassian/Jira | Create, update, search issues |
-| LangChain docs | Live documentation for AI/RAG questions |
-| Looker | Query dashboards via local toolbox binary |
+KDB works with whatever MCP servers you wire in. The integrations below are what this template was built with — swap any for equivalent tools in your stack. The slash commands and wiki patterns work regardless of which specific tools you use.
+
+| Tool | Role | Setup |
+|------|------|-------|
+| Notion | Read/write PRDs, meeting notes, roadmaps | [claude.ai integrations](https://claude.ai/settings/integrations) |
+| Slack | Draft and post channel updates | [claude.ai integrations](https://claude.ai/settings/integrations) |
+| Atlassian/Jira | Create, update, search issues | [claude.ai integrations](https://claude.ai/settings/integrations) |
+| Figma | Read design files and extract specs (read-only) | [claude.ai integrations](https://claude.ai/settings/integrations) |
+| Amplitude | Query dashboards, funnels, experiments | [claude.ai integrations](https://claude.ai/settings/integrations) |
+| LangChain docs | Live documentation for AI/RAG questions | [claude.ai integrations](https://claude.ai/settings/integrations) |
+| Looker | Query dashboards via local toolbox binary | Custom binary (org-specific) |
+
+**Minimum to get started:** Notion + Slack + Jira covers the majority of slash commands. Amplitude and Looker unlock `/data` and `/wiki-brief` fully but are optional — skip them and note the gaps in `wiki/surface.yaml`.
 
 ---
 
@@ -118,7 +122,7 @@ The bottleneck moves from finding information to interpreting it.
 
 1. **Clone** this repo. Drop your Looker toolbox binary into `looker-toolbox/` (gitignored). Skip if you don't use Looker.
 2. **Fill in `.mcp.json`** with your Looker URL, client ID, and secret (gitignored).
-3. **Authenticate remote MCPs** via `claude mcp add --transport http <name> <url>` for Notion, Figma, Slack, Amplitude, Atlassian, and LangChain docs.
+3. **Connect your tools** at [claude.ai/settings/integrations](https://claude.ai/settings/integrations). Most integrations are one-click from there. At minimum: Notion, Slack, and Jira. Analytics and BI tools are optional but unlock `/data` and `/wiki-brief` fully.
 4. **Edit [`kdb.config.md`](./kdb.config.md)**: replace every `YOUR_...` placeholder with your real URLs, channel names, and Jira project key.
 5. **Fill in `knowledge/`**: PRD template, glossary, OKRs, Slack channels, dashboard index, team roster, stakeholder profiles.
 6. **Fill in `wiki/surface.yaml`**: add your active initiatives and weekly metrics. This drives `/wiki-brief`.
